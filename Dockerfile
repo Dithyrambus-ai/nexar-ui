@@ -11,7 +11,7 @@ RUN mkdir -p /var/www/localhost/htdocs
 # 4. 替换网页文件
 # 注意：Alpine 中 Nginx 默认网页路径可能与 Ubuntu 不同
 # 通常在 /var/www/localhost/htdocs 或 /usr/share/nginx/html
-COPY index.html /var/www/localhost/htdocs/index.html
+COPY src/index.html /var/www/localhost/htdocs/index.html
 COPY my-nginx.conf /etc/nginx/http.d/default.conf
 
 EXPOSE 80
