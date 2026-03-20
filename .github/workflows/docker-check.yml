@@ -36,4 +36,4 @@ jobs:
             ${{ secrets.DOCKERHUB_USERNAME }}/nexar-ui:${{ github.sha }}
 
       - name: Verify Deployment
-        run: echo "镜像已成功推送到 Docker Hub! 地址为：${{ secrets.DOCKERHUB_USERNAME }}/nexar-ui:latest"
+        run: echo "镜像已成功推送到 Docker Hub!"
