@@ -12,10 +12,10 @@ jobs:
 
     steps:
       - name: Checkout code # 第一步：把你的代码拉取到虚拟机里
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Docker Buildx # 第二步：初始化 Docker 构建环境
-        uses: docker/setup-buildx-action@v2
+        uses: docker/setup-buildx-action@v3
 
       - name: Build Docker Image # 第三步：尝试构建镜像，检查 Dockerfile 有没有写错
         run: |
@@ -24,6 +24,6 @@ jobs:
 
       - name: Run Compose Test # 第四步：尝试用 Compose 跑起来看看能不能启动
         run: |
-          docker-compose up -d
+          docker compose up -d
           sleep 5
-          docker-compose ps
+          docker compose ps
