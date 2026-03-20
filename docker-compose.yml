@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+  # 服务 A：前端网关 (Nginx)
+  web-gateway:
+    build:
+      context: . # 构建上下文：就在当前目录
+      dockerfile: Dockerfile.alpine
+    ports:
+      - "8888:80" # 宿主机 8888 映射到容器 80
+    restart: always # 运维必备：如果容器崩了，自动重启
+    networks:
+      - internal-bridge # 加入自定义网络
+
+  # 服务 B：后端模拟器 (Echo Server)
+  api-service:
+    image: hashicorp/http-echo:latest
+    # command 可以理解为启动容器后运行的参数
+    command: "-text='[Backend Output]: Connection Successful!@@@'"
+    environment:
+      - NODE_ENV=production # 模拟传递环境变量
+    networks:
+      - internal-bridge # 必须在同一个网络才能通信
+
+# 定义网络（这是最核心的，它让容器之间可以通过“服务名”找到对方）
+networks:
+  internal-bridge:
+    driver: bridge # 驱动模式：桥接
