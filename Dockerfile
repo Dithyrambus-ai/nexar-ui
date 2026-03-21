@@ -14,6 +14,8 @@ RUN mkdir -p /var/www/localhost/htdocs
 COPY index.html /var/www/localhost/htdocs/index.html
 COPY my-nginx.conf /etc/nginx/http.d/default.conf
 
+RUN chown -R nginx:nginx /var/www/localhost/htdocs
+
 EXPOSE 80
 
 # 5. 覆盖 Nginx 配置或直接启动
