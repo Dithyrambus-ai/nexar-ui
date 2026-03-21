@@ -16,7 +16,7 @@ services:
   api-service:
     image: hashicorp/http-echo:latest
     # command 可以理解为启动容器后运行的参数
-    command: "-text='[Backend Output]: Connection Successful!@@@'"
+    command: "-text='[Backend Output]: Connection Successful!'"
     environment:
       - NODE_ENV=production # 模拟传递环境变量
     networks:
